@@ -1,2 +1,16 @@
-<<h1>Here is your task list</h1>
-<p><%= @tasks %></p>
+<h1>Here is your task list</h1>
+
+<%= link_to "Create task", new_task_path %>
+
+
+<% @tasks.each do |task| %>
+  <h3><%= task.name %></h3>
+  <p><%= task.description %></p>
+  <p>Importance : <%= task.importance %></p>
+  <%= link_to "Voir la task", task_path(task) %>
+  <%= link_to "Delete", task_path(task),
+  method: :delete, data: { confirm: "Are you sure my friend ?" } %>
+  <%= link_to "Edit", edit_task_path(task) %>
+  <p>------------------</p>
+<% end %>
+
